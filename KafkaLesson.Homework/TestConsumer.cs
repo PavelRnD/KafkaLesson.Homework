@@ -8,6 +8,7 @@ public class TestConsumer : IConsumer<TestEvent>
     {
         await Task.CompletedTask;
         var eventStorage = EventStorage.Instance;
+        eventStorage.Increment();
 
         var latestEvent = eventStorage.GetProcessedEvent().FirstOrDefault(x => x.Id == ev.Id && x.Version >= ev.Version );
         if(latestEvent == null)
