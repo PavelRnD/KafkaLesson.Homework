@@ -9,7 +9,7 @@ public class TestConsumer : IConsumer<TestEvent>
         await Task.CompletedTask;
         var eventStorage = EventStorage.Instance;
 
-        var latestEvent = eventStorage.GetProcessedEvent().FirstOrDefault(_ => _.Id == ev.Id && _.Version >= ev.Version );
+        var latestEvent = eventStorage.GetProcessedEvent().FirstOrDefault(x => x.Id == ev.Id && x.Version >= ev.Version );
         if(latestEvent == null)
             eventStorage.AddProcessedEvent(ev);
     }
